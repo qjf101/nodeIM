@@ -60,7 +60,7 @@ export function getUsersError(error){
 export function getUsers(){
     return async function (dispatch) {
         try{
-            const response = await axios.get('http://10.0.0.212:3005/users/')
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/`)
             dispatch(getUsersSuccess(response.data));
         }catch(error){
             dispatch(getUsersError(error));
@@ -111,7 +111,7 @@ export function setUseridError(error){
 export function setUsername(userData){
     return async function (dispatch) {
         try{
-            const response = await axios.post('http://10.0.0.212:3005/addUser/', {userData})
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/addUser/`, {userData})
             if (response.data.id) {
                 dispatch(setUseridSuccess(response.data));
             } else {
@@ -144,7 +144,7 @@ export function updateChatLogError(error){
 export function updateChatLog(){
     return async function (dispatch) {
         try{
-            const response = await axios.get('http://10.0.0.212:3005/messages/')
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/messages/`)
             dispatch(updateChatLogSuccess(response.data));
         }catch(error){
             dispatch(updateChatLogError(error));
